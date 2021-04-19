@@ -1,0 +1,4 @@
+window.parent.location.reload();//刷新父页面
+
+                                        var index = parent.layer.getFrameIndex(window.name);//获取当前//iframe层的索引
+                                        parent.layer.close(index);//执行关闭

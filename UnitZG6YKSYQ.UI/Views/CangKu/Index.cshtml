@@ -1,0 +1,234 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>出库管理</title>
+    <script src="~/layui/layui.js"></script>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <div class="demoTable">
+        业务实体：
+        <div class="layui-inline">
+            <select id="Yid">
+                <option value="-1">请选择</option>
+            </select>
+        </div>
+        合同编号：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+        </div>
+        合同名称：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="Hname" autocomplete="off">
+        </div>
+        采购订单号：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="Cai" autocomplete="off">
+        </div>
+        <button class="layui-btn" onclick="location.href='/CangKu/index'">重置</button>
+    </div>
+    <hr />
+    <div class="demoTable">
+        出库单号：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="ChuDan" autocomplete="off">
+        </div>
+        制单人：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="ZhiDan" autocomplete="off">
+        </div>
+        出库时间：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="Csj" autocomplete="off">
+        </div>
+        至：
+        <div class="layui-inline">
+            <input class="layui-input" name="id" id="Jsj" autocomplete="off">
+        </div>
+        <button class="layui-btn" data-type="reload">查询</button>
+    </div>
+    <hr />
+    <div class="demoTable">
+        库存名称：
+        <div class="layui-inline">
+            <select id="Kid">
+                <option value="-1">请选择</option>
+            </select>
+        </div>
+        单据类型：
+        <div class="layui-inline">
+            <select id="Jid">
+                <option value="-1">请选择</option>
+            </select>
+        </div>
+        状态：
+        <div class="layui-inline">
+            <select id="Zid">
+                <option value="-1">请选择</option>
+            </select>
+        </div>
+    </div>
+    <hr />
+    <div>
+        <a class="layui-btn" href="/CangKu/Dao">导出</a>
+        <input type="button" class="layui-btn" onclick="tian()" value="新增出库" />
+    </div>
+    <table id="demo" lay-filter="test"></table>
+
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.use(['table', 'layer'], function () {
+            var table = layui.table;
+          
+          
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                , id: 'testReload'
+                , height: 500
+                , url: '/CangKu/InData' //数据接口
+                , page: true //开启分页
+                , cols: [[ //表头
+                    { field: 'id', title: '序号', width: 80, sort: true, fixed: 'left' }
+                    , { field: 'yName', title: '业务实体', width: 135 }
+                    , { field: 'bian', title: '合同编号', width: 135, sort: true }
+                    , { field: 'hname', title: '合同名称', width: 135 }
+                    , { field: 'cai', title: '采购订单号', width: 177 }
+                    , { field: 'chuDan', title: '出库单号', width: 135, sort: true }
+                    , { field: 'jid', title: '单据类型', width: 80, sort: true }
+                    , { field: 'kid', title: '库存名称', width: 80 }
+                    , { field: 'bu', title: '制单部门', width: 135, sort: true }
+                    , { field: 'zhiDan', title: '制单人', width: 135, sort: true }
+                    , { field: 'zong', title: '入库总金额', width: 135, sort: true }
+                    , { field: 'cjin', title: '出库金额', width: 135, sort: true }
+                    , { field: 'jia', title: '加成金额', width: 135, sort: true }
+                    , { field: 'csj', title: '制单时间', width: 135, sort: true }
+                    , { field: 'zName', title: '状态', width: 135, sort: true }
+                ]]
+            });
+            var $ = layui.$, active = {
+                reload: function () {
+                    var demoReload = $('#demoReload');
+                    var Yid = $('#Yid');
+                    var Hname = $('#Hname');
+                    var Cai = $('#Cai');
+                    var ChuDan = $('#ChuDan');
+                    var ZhiDan = $('#ZhiDan');
+                    var Csj = $('#Csj');
+                    var Jsj = $('#Jsj');
+                    var Kid = $('#Kid');
+                    var Jid = $('#Jid');
+                    var Zid = $('#Zid');
+
+                    //执行重载
+                    table.reload('testReload', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+                            Bian: demoReload.val(),
+                            Yid: Yid.val(),
+                            Hname: Hname.val(),
+                            Cai: Cai.val(),
+                            ChuDan: ChuDan.val(),
+                            ZhiDan: ZhiDan.val(),
+                            Csj: Csj.val(),
+                            Jsj: Jsj.val(),
+                            Kid: Kid.val(),
+                            Jid: Jid.val(),
+                            Zid: Zid.val(),
+                        }
+                    });
+                }
+            };
+
+            $('.demoTable .layui-btn').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+           
+             
+            
+        });
+    </script>
+</body>
+</html>
+<script>
+    $(function () {
+        YBang();//业务实体绑定
+        KBang();//库存名称绑定
+        DBang();//单据类型绑定
+        ZBang();//状态绑定
+    })
+     function tian()
+    {
+         //多窗口模式，层叠置顶
+         layer.open({
+             type: 2 //此处以iframe举例
+             , title: '出库'
+             , area: ['800px', '800px']
+             , content: '/CangKu/Add'
+         })   
+            }
+    //业务实体绑定
+    function YBang() {
+        $.ajax({
+            url: '/CangKu/YBang',
+            type: 'get',
+            async: false,
+            success: function (res) {
+                $.each(res.data, function (i, v) {
+                    $("#Yid").append("<option value='" + v.yId + "'>" + v.yName + "</option>");
+                });
+            }
+        });
+    }
+    //库存名称绑定
+    function KBang() {
+        $.ajax({
+            url: '/CangKu/Kang',
+            type: 'get',
+            async: false,
+            success: function (res) {
+                $.each(res.data, function (i, v) {
+                    $("#Kid").append("<option value='" + v.kId + "'>" + v.kName + "</option>");
+                });
+            }
+        });
+    }
+    //单据类型绑定
+    function DBang() {
+        $.ajax({
+            url: '/CangKu/DBang',
+            type: 'get',
+            async: false,
+            success: function (res) {
+                $.each(res.data, function (i, v) {
+                    $("#Jid").append("<option value='" + v.dId + "'>" + v.dName + "</option>");
+                });
+            }
+        });
+    }
+    //状态绑定
+    function ZBang() {
+        $.ajax({
+            url: '/CangKu/ZBang',
+            type: 'get',
+            async: false,
+            success: function (res) {
+                $.each(res.data, function (i, v) {
+                    $("#Zid").append("<option value='" + v.zId + "'>" + v.zName + "</option>");
+                });
+            }
+        });
+    }
+</script>

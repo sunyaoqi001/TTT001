@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UnitZG6YKSYQ.BLL\UnitZG6YKSYQ.BLL.csproj" />
+    <ProjectReference Include="..\UnitZG6YKSYQ.DAL\UnitZG6YKSYQ.DAL.csproj" />
+    <ProjectReference Include="..\UnitZG6YKSYQ.Model\UnitZG6YKSYQ.Model.csproj" />
+  </ItemGroup>
+
+</Project>

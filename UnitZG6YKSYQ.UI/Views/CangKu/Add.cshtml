@@ -1,0 +1,175 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+    <script src="~/layui/layui.js"></script>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+<body>
+
+        <form class="layui-form" action="">
+            <div class="demoTable">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">合同编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="Bian" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">合同名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="Hname" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">退货订单号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="Cai" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出库单号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ChuDan" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单据类型</label>
+                    <div class="layui-input-block">
+                            <select name="Jid" id="Jid" lay-filter="aihao">
+                                <option value="-1">请选择</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">制单部门</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="Bu" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">制单人</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ZhiDan" lay-verify="title" autocomplete="off" placeholder="请输入制单人" class="layui-input">
+                    </div>
+                </div>
+                <div>
+                    <table id="demo" lay-filter="test"></table>
+
+                    <script src="/layui/layui.js"></script>
+                    <script>
+                        layui.use('table', function () {
+                            var table = layui.table;
+
+                            //第一个实例
+                            table.render({
+                                elem: '#demo'
+                                , height: 312
+                                , url: '/CangKu/Ming' //数据接口
+                                , page: true //开启分页
+                                , cols: [[ //表头
+                                    { type: 'checkbox', fixed: 'left' },
+                                    { field: 'id', title: '序号', width: 80, sort: true, fixed: 'left' }
+                                    , { field: 'name', title: '产品名称', width: 80 }
+                                    , { field: 'pian', title: '产品编号', width: 80, sort: true }
+                                    , { field: 'hao', title: '箱号', width: 80 }
+                                    , { field: 'ming', title: '箱名', width: 177 }
+                                    , { field: 'bao', title: '包装材质', width: 80, sort: true }
+                                    , { field: 'wuName', title: '物料名称', width: 80, sort: true }
+                                    , { field: 'shuo', title: '物料说明', width: 80 }
+                                    , { field: 'xing', title: '物料型号', width: 135, sort: true }
+                                    , { field: 'num', title: '数量', width: 135, sort: true }
+                                    , { field: 'dan', title: '含税单价', width: 135, sort: true }
+                                    , { field: 'bDan', title: '不含税单价', width: 135, sort: true }
+                                    , { field: 'hanZong', title: '含税总价', width: 135, sort: true }
+                                    , { field: 'buHanZong', title: '不含税总价', width: 135, sort: true }
+                                    , { field: 'jia', title: '加成比例', width: 135, sort: true }
+                                    , { field: 'hSjia', title: '会含税价成全额', width: 135, sort: true }
+                                    , { field: 'bhSjia', title: '不含税价成全额', width: 135, sort: true }
+                                    , { field: 'cheng', title: '成本类型', width: 135, sort: true }
+                                    
+                                ]]
+                            });
+
+                        });
+                    </script>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">入库总金额</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="Zong" lay-verify="required" lay-reqtext="入库总金额是必填项，岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出库总金额</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="Cjin" lay-verify="required" lay-reqtext="出库总金额是必填项，岂能为空？" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+</body>
+</html>
+<script>
+    layui.use('form', function () {
+        var form = layui.form
+            , layer = layui.layer
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            //layer.alert(JSON.stringify(data.field), {
+            //    title: '最终的提交信息'
+            //})
+            $.ajax({
+                url: '/CangKu/ADDD',
+                type: 'post',
+                data: data.field,
+                async: false,
+                success: function (res) {
+                    alert(res.data);
+                    if (res.msg) {
+                        window.parent.location.reload();//刷新父页面
+
+                        var index = parent.layer.getFrameIndex(window.name);//获取当前//iframe层的索引
+                        parent.layer.close(index);//执行关闭
+                    }
+                    
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<script>
+    $(function ()
+    {
+        DBang();//单据类型绑定
+    })
+    //单据类型绑定
+    function DBang() {
+        $.ajax({
+            url: '/CangKu/DBang',
+            type: 'get',
+            async: false,
+            success: function (res) {
+                $.each(res.data, function (i, v) {
+                    $("#Jid").append("<option value='" + v.dId + "'>" + v.dName + "</option>");
+                });
+            }
+        });
+    }
+</script>

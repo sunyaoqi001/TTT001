@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UnitZG6YKSYQ.DAL\UnitZG6YKSYQ.DAL.csproj" />
+    <ProjectReference Include="..\UnitZG6YKSYQ.Model\UnitZG6YKSYQ.Model.csproj" />
+  </ItemGroup>
+
+</Project>
