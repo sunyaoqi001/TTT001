@@ -138,11 +138,10 @@ namespace UnitZG6YKSYQ.UI.Controllers
             var list = _bll.Add(s);
             return Ok(new { data = list>0?"添加成功":"添加失败",msg=list>0?true:false });
         }
-        //显示明细方法
-        public IActionResult Ming()
+        public IActionResult Mingaaa()
         {
             var list = _bll.Ming();
-            return Ok(new { code = 0,data = list });
+            return Ok(new { code = 0, data = list });
         }
     }
 }
